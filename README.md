@@ -2,6 +2,14 @@
 
 End-to-end machine learning project predicting customer churn for a telecommunications company. Uses the IBM Telco Customer Churn dataset to identify high-risk customers and the behavioral and contractual factors that drive attrition. Combines exploratory data analysis, feature engineering, and a comparison of three classification models (Logistic Regression, Random Forest, XGBoost) interpreted with SHAP.
 
+## TL;DR
+
+- Predicted churn for **7,032** telecom customers; a threshold-tuned Logistic Regression catches **76% of customers who churn**, so the retention team can reach them first.
+- New customers on month-to-month contracts (an engineered `HighRisk` flag) churn at **51.9% vs 17.1%** for everyone else.
+- Contract length is the clearest lever: **42.7%** churn on month-to-month vs **2.8%** on two-year contracts.
+
+![Churn rate by contract type](figures/churn_by_contract.png)
+
 ## Business Problem
 
 Customer churn is one of the most expensive problems in subscription businesses — acquiring a new customer typically costs 5–7x more than retaining an existing one. The goal of this project is twofold:
@@ -19,10 +27,10 @@ Customer churn is one of the most expensive problems in subscription businesses 
 ## Project Structure
 
 ```
-Teleco Churn Project/
+telecom-churn-analysis/
 ├── data/
-│   ├── Teleco Customer Churn.csv      # raw dataset
-│   ├── clean_teleco_df.csv            # cleaned + encoded dataset
+│   ├── telco_customer_churn.csv       # raw dataset
+│   ├── clean_telco_df.csv             # cleaned + encoded dataset
 │   └── churn_dashboard_data.csv       # scored data for downstream BI use
 ├── notebooks/
 │   ├── 01_data_cleaning.ipynb         # data type fixes, encoding, missing values
@@ -93,7 +101,7 @@ Feature-engineered a `HighRisk` flag (`tenure < 12 months` AND `month-to-month c
 
 ```bash
 # clone the repo
-git clone https://github.com/<your-username>/telecom-churn-analysis.git
+git clone https://github.com/handillon1/telecom-churn-analysis.git
 cd telecom-churn-analysis
 
 # create a virtual environment (optional but recommended)
